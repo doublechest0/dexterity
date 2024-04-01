@@ -331,7 +331,7 @@
     Caustic: 0.0
     Poison: 0.0
     Cellular: 0.0
-  flatReductions
+  flatReductions:
     # can't punch the endoskeleton to death
     Blunt: 5
 
