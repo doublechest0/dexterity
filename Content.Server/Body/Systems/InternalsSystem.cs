@@ -34,6 +34,20 @@ public sealed class InternalsSystem : EntitySystem
         SubscribeLocalEvent<InternalsComponent, ComponentShutdown>(OnInternalsShutdown);
         SubscribeLocalEvent<InternalsComponent, GetVerbsEvent<InteractionVerb>>(OnGetInteractionVerbs);
         SubscribeLocalEvent<InternalsComponent, InternalsDoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<BreathToolComponent, ConnectedBreathToolEvent>(OnBreathMaskConnected);
+    }
+
+    private void OnBreathMaskConnected(EntityUid uid, BreathToolComponent comp, ConnectedBreathToolEvent args)
+    {
+        if (!comp.AutomaticActivation)
+            return;
+
+        if (TryComp<InternalsComponent>(args.User, out var internalsComp) &&
+                !AreInternalsWorking(internalsComp))
+                ToggleInternals(args.User , args.User , false, internalsComp);
+
+        // this is currently only used for roundstart activation, so we turn the feature off afterwards
+        comp.AutomaticActivation = false;
     }
 
     private void OnGetInteractionVerbs(
@@ -171,6 +185,9 @@ public sealed class InternalsSystem : EntitySystem
         }
 
         ent.Comp.BreathToolEntity = toolEntity;
+
+        var connected = new ConnectedBreathToolEvent(toolEntity, ent, ent);
+        RaiseLocalEvent(toolEntity, ref connected);
         _alerts.ShowAlert(ent, AlertType.Internals, GetSeverity(ent));
     }
 
@@ -217,7 +234,7 @@ public sealed class InternalsSystem : EntitySystem
         if (component.BreathToolEntity is null || !AreInternalsWorking(component))
             return 2;
 
-        // If pressure in the tank is below low pressure threshhold, flash warning on internals UI
+        // If pressure in the tank is below low pressure threshold, flash warning on internals UI
         if (TryComp<GasTankComponent>(component.GasTankEntity, out var gasTank)
             && gasTank.IsLowPressure)
         {
@@ -262,3 +279,12 @@ public sealed class InternalsSystem : EntitySystem
         return null;
     }
 }
+
+/// <summary>
+/// Raised on a breathing mask entity after it was equipped on a mob and successfully connected to the mob's InternalsComponent
+/// </summary>
+/// <param name="Mask">The mask that was equipped</param>
+/// <param name="User">The mob that just equipped the mask</param>
+/// <param name="IntComp">The mob's component</param>
+[ByRefEvent]
+public readonly record struct ConnectedBreathToolEvent (EntityUid Mask,  EntityUid User, InternalsComponent IntComp );

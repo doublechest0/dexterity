@@ -618,4 +618,5 @@
     storedRotation: -90
   - type: EyeProtection
   - type: BreathMask
+    automaticActivation: true
   - type: IdentityBlocker

@@ -23,7 +23,7 @@ public abstract class SharedStationSpawningSystem : EntitySystem
     /// <param name="startingGear">Starting gear to use.</param>
     public void EquipStartingGear(EntityUid entity, StartingGearPrototype startingGear)
     {
-        if (InventorySystem.TryGetSlots(entity, out var slotDefinitions))
+        if (InventorySystem.TryGetSlots(entity, out var slotDefinitions, true))
         {
             foreach (var slot in slotDefinitions)
             {
