@@ -257,6 +257,20 @@
     - WhitelistChameleon
 
 - type: entity
+  parent: ClothingHeadHatChef
+  id: ClothingHeadHatHeadChef
+  name: head chef's hat
+  description: "It's a hat used by chefs who have truly mastered their craft. This one is very tall."
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/chefhathead.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/chefhathead.rsi
+  - type: Storage
+    grid:
+    - 0,0,0,3
+
+- type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatFedoraBrown
   name: brown fedora

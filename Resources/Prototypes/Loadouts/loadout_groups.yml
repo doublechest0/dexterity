@@ -184,6 +184,7 @@
   minLimit: 0
   loadouts:
   - ChefHead
+  - ChefHeadHat
 
 - type: loadoutGroup
   id: ChefMask
