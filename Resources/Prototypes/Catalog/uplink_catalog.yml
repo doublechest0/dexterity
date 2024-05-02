@@ -1344,6 +1344,16 @@
   categories:
     - UplinkWearables
 
+- type: listing
+  id: UplinkEyesGlassesHiddenSecurity
+  name: uplink-sunglasses-sechud-name
+  description: uplink-sunglasses-sechud-desc
+  productEntity: ClothingEyesGlassesHiddenSecurity
+  cost:
+    Telecrystal: 2
+  categories:
+    - UplinkWearables
+    
  # Pointless
 
 - type: listing
