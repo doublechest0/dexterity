@@ -970,8 +970,17 @@
       - ClothingHeadHatBeretSeniorPhysician
       - ClothingUniformJumpsuitMedicalDoctor
       - ClothingUniformJumpskirtMedicalDoctor
+      - ClothingOuterCoatLab
+      - ClothingUniformJumpsuitVirology
+      - ClothingUniformJumpskirtVirology
+      - ClothingOuterCoatLabViro
+      - ClothingUniformJumpsuitGenetics
+      - ClothingUniformJumpskirtGenetics
+      - ClothingOuterCoatLabGene
+      - ClothingOuterCoatLabChem
       - ClothingUniformJumpsuitSeniorPhysician
       - ClothingUniformJumpskirtSeniorPhysician
+      - ClothingOuterCoatLabSeniorPhysician
       - ClothingUniformJumpsuitMime
       - ClothingUniformJumpskirtMime
       - ClothingUniformJumpsuitMusician
